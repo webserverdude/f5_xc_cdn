@@ -56,7 +56,7 @@ For testing the WAAP functionality, you could append a simple script tag as a qu
 
 ### Testing CDN
 
-When accessing the site for the first time, the CDN should be empty and the relevant HTTP header should show a miss.
+When accessing the site for the first time, the CDN should be empty and the `X-Cache-Status` HTTP header should show MISS.
 
 ![cdn_cache_miss](assets/cdn_cache_miss.png)
 
@@ -64,7 +64,7 @@ After 2-3 refreshes (Ctrl+Shift+R) this should change to a cache hit.
 
 ![cdn_cache_hit_FR4](assets/cdn_cache_hit_FR4.png)
 
-And also from another GEO location, you should see a different value in the `X-Volterra-Location` header.
+And also from another geolocation, you should see a different value in the `X-Volterra-Location` header.
 
 ![cdn_cache_hit_SG3](assets/cdn_cache_hit_SG3.png)
 
