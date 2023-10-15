@@ -62,6 +62,22 @@ When accessing the site for the first time, the CDN should be empty and the rele
 
 After 2-3 refreshes (Ctrl+Shift+R) this should change to a cache hit.
 
-![cdn_cache_hit](assets/cdn_cache_hit.png)
+![cdn_cache_hit_FR4](assets/cdn_cache_hit_FR4.png)
+
+And also from another GEO location, you should see a different value in the `X-Volterra-Location` header.
+
+![cdn_cache_hit_SG3](assets/cdn_cache_hit_SG3.png)
 
 ### Remarks
+
+#### Cache Control
+The F5 XC CDN service honors the `cache-control` header returned by your origin application. If `cache-control` is not returned by your origin application, the CDN service does not consider the response cacheable. A simple valid example for NGINX would like like this:
+
+```
+location ~* \.(css|js|gif|jpg|png)$ {
+ expires 4h;
+ add_header Cache-Control "public";
+}
+```
+
+The tilde-asterisk (~*) makes it a case-insensitive matching for all file types in the brackets. Those items should be cached for four hours and the `public` response directive indicates that the responses can be stored in a shared cache.
